@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            background-image: url("{% static './images/afriqs.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        li:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+            transform: translateY(-5px); 
+        }
+        li strong {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+        }
+        p {
+            text-align: center;
+            color: #666;
+        }
+        .return-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .return-btn a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .return-btn a:hover {
+            background-color: #45a049; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommandations de Voyage</h1>
+    {% if recommendations %}
+        <ul>
+        {% for recommendation in recommendations %}
+            <li>
+                <strong>Pays:</strong> {{ recommendation.Pays }}<br>
+                <strong>Budget Moy./Jour (FCFA):</strong> {{ recommendation.Budget }}<br>
+                <strong>Durée Moy. (jours):</strong> {{ recommendation.Duree }}<br>
+                <strong>Preferences:</strong> {{ recommendation.Preferences }}<br>
+                <strong>Activites:</strong> {{ recommendation.Activites }}<br>
+                <strong>{{ hotel_etoiles }}:</strong> {{ recommendation.Hotel }}<br>
+                <strong>Budget Repas Simple (FCFA):</strong> {{ recommendation.Budget_Repas_Simple }}<br>
+                <strong>Saison Propice:</strong> {{ recommendation.Saison_Propice }}<br>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune recommandation disponible pour les critères fournis.</p>
+    {% endif %}
+
+    <!-- Bouton de retour -->
+    <div class="return-btn">
+        <a href="#" onclick="history.back()">Retour</a>
+    </div>
+</body>
+</html>
+
+

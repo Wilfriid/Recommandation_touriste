@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommandation de voyage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{% static './images/afriqs.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 45px;
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommandez-moi une destination</h1>
+    <form method="post" action="{% url 'recommendation' %}">
+        {% csrf_token %}
+        <label for="budget_jour">Budget par jour (FCFA) :</label>
+        <input type="number" id="budget_jour" name="budget_jour" required><br>
+        
+        <label for="duree_sejour">Durée du séjour (jours) :</label>
+        <input type="number" id="duree_sejour" name="duree_sejour" required><br>
+        
+        <label for="preferences_voyage">Préférences de voyage :</label>
+        <input type="text" id="preferences_voyage" name="preferences_voyage" required><br>
+        
+        <label for="activites_voyage">Activités préférées :</label>
+        <input type="text" id="activites_voyage" name="activites_voyage" required><br>
+        
+        <label for="hotel_etoiles">Type d'hôtel :</label>
+        <select id="hotel_etoiles" name="hotel_etoiles">
+            <option value="Hotel 3*">Hotel 3*</option>
+            <option value="Hotel 4*">Hotel 4*</option>
+            <option value="Hotel 5*">Hotel 5*</option>
+        </select><br>
+        
+        <label for="saison_propice">Saison propice :</label>
+        <input type="text" id="saison_propice" name="saison_propice" required><br>
+        
+        <label for="budget_repas_simple">Budget repas simple (FCFA) :</label>
+        <input type="number" id="budget_repas_simple" name="budget_repas_simple" required><br>
+        
+        <input type="submit" value="Rechercher">
+    </form>
+</body>
+</html>
